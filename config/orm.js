@@ -14,9 +14,9 @@ var orm = {
 
         });
     },
-    insertOne: function (tableName, burgerName) {
+    insertOne: function (colName, burgerName) {
         return new Promise(function (resolve, reject) {
-            var queryString = "INSERT INTO " + tableName + " VALUES (" + burgerName + ");";
+            var queryString = "INSERT INTO burger (" + colName + ") VALUES ('" + burgerName + "');";
 
             connection.query(queryString, function (err, result) {
 

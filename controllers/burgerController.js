@@ -10,7 +10,31 @@ router.get("/", function (req, res) {
         console.log(result);
 
         res.render("index", { burger: result });
-    })
+    }).catch(function (err) {
+        console.log(err);
+    });
 });
+
+router.post("/api/burger", function (req, res) {
+    console.log(req.body);
+
+    burger.add(req.body.burger_name).then(function (result) {
+        res.json(result);
+    }).catch(function (err) {
+        console.log(err);
+    });
+});
+
+router.put("/api/burger/:id", function (req, res) {
+
+    burger.devour(req.params.id).then(function (result) {
+        console.log(result);
+        res.json(result);
+    }).catch(function (err) {
+        console.log(err);
+    });
+
+});
+
 
 module.exports = router;

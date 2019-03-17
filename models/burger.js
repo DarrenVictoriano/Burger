@@ -12,7 +12,7 @@ var burger = {
     },
     add: function (burgerName) {
         return new Promise(function (resolve, reject) {
-            orm.insertOne("burger", burgerName).then(function (res) {
+            orm.insertOne("burger_name", burgerName).then(function (res) {
                 resolve(res);
             }).catch(function (err) {
                 reject(err);
