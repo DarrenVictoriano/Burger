@@ -3,19 +3,27 @@ $(function () {
     $("#add-burger-button").on("click", function (event) {
         event.preventDefault();
 
-        var newBurger = {
-            burger_name: $("#burger-text").val().trim()
-        };
+        if ($("#burger-text").val()) {
 
-        $.ajax("/api/burger", {
-            type: "POST",
-            data: newBurger
-        }).then(function (res) {
-            console.log(res);
-            location.reload();
-        }).catch(function (err) {
-            console.log(err);
-        });
+            var newBurger = {
+                burger_name: $("#burger-text").val().trim()
+            };
+
+            $.ajax("/api/burger", {
+                type: "POST",
+                data: newBurger
+            }).then(function (res) {
+                console.log(res);
+                location.reload();
+            }).catch(function (err) {
+                console.log(err);
+            });
+
+        } else {
+            alert("Enter a burger you want to eat.");
+        }
+
+
     });
 
     // devour
@@ -30,6 +38,19 @@ $(function () {
         $.ajax("/api/burger/" + burgerId, {
             type: "PUT",
             data: devourThis
+        }).then(function (res) {
+            console.log(res);
+            location.reload();
+        });
+
+    });
+
+    // cleanUp
+    $("#del-burger-button").on("click", function (event) {
+        event.preventDefault();
+
+        $.ajax("/api/burger/delete", {
+            type: "DELETE"
         }).then(function (res) {
             console.log(res);
             location.reload();

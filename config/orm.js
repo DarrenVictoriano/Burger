@@ -40,6 +40,18 @@ var orm = {
             });
 
         });
+    },
+    deleteAll: function (tableName, condition) {
+        return new Promise(function (resolve, reject) {
+            var queryString = "DELETE FROM " + tableName + " WHERE " + condition + ";";
+
+            connection.query(queryString, function (err, result) {
+                if (err) {
+                    reject(err);
+                }
+                resolve(result);
+            });
+        });
     }
 };
 

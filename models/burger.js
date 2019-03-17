@@ -27,6 +27,15 @@ var burger = {
                 reject(err);
             });
         });
+    },
+    cleanUp: function () {
+        return new Promise(function (resolve, reject) {
+            orm.deleteAll("burger", "devoured = true").then(function (res) {
+                resolve(res);
+            }).catch(function (err) {
+                reject(err);
+            });
+        });
     }
 }
 

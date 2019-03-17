@@ -36,5 +36,13 @@ router.put("/api/burger/:id", function (req, res) {
 
 });
 
+router.delete("/api/burger/delete", function (req, res) {
+    burger.cleanUp().then(function (results) {
+        res.json(results);
+    }).catch(function (err) {
+        console.log(err);
+    });
+});
+
 
 module.exports = router;
